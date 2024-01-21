@@ -1,9 +1,14 @@
-import "./App.css";
+import { ContactList } from './components/ContactList/ContactList.jsx';
+import { Section } from './components/Section/Section.jsx';
+import initialContacts from './data/initialContacts.json';
+console.log(initialContacts);
 
 function App() {
   return (
     <>
-      <h1>Vite + React</h1>
+      <Section title="Contact List">
+        <ContactList />
+      </Section>
     </>
   );
 }
