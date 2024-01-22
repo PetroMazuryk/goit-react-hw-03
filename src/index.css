@@ -34,11 +34,13 @@ img {
   max-width: 100%;
   height: auto;
 }
+
 ul {
   list-style: none;
   margin: 0;
-  padding-left: 0;
+  padding: 0;
 }
+
 a {
   text-decoration: none;
   cursor: pointer;
@@ -46,15 +48,19 @@ a {
 a:focus {
   outline: none;
 }
+
 button {
   display: block;
-  margin: 0 auto;
+  margin: 0;
+  padding: 0;
   cursor: pointer;
   border: none;
 }
+
 button:focus {
   outline: none;
 }
+
 input {
   border: none;
 }
