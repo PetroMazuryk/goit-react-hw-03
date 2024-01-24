@@ -7,7 +7,8 @@ export const Contact = ({ contact, onDelete }) => {
     <div className={css.contactWrapper}>
       <div>
         <p>
-          <FaUserAlt className={css.icon} size="18" /> {contact.name}
+          <FaUserAlt className={css.icon} size="18" />
+          {contact.name}
         </p>
         <p>
           <FaPhone className={css.icon} size="18" />

@@ -4,11 +4,12 @@ import { Section } from './components/Section/Section.jsx';
 import { SearchBar } from './components/SearchBar/SearchBar.jsx';
 import initialContacts from './data/initialContacts.json';
 import { ContactForm } from './components/ContactForm/ContactForm.jsx';
+import { Notification } from './components/Notification/Notification.jsx';
 
 export const App = () => {
   const [contactsUsers, setContactsUsers] = useState(initialContacts);
   const [nameFilter, setNameFilter] = useState('');
-
+  console.log(contactsUsers);
   const handleChange = evt => {
     setNameFilter(evt.target.value);
   };
@@ -42,7 +43,11 @@ export const App = () => {
       </Section>
 
       <Section title="Contact List">
-        <ContactList contacts={visibleContactsUsers} onDelete={deleteUser} />
+        {contactsUsers.length > 0 ? (
+          <ContactList contacts={visibleContactsUsers} onDelete={deleteUser} />
+        ) : (
+          <Notification message="There is no added contacts"></Notification>
+        )}
       </Section>
     </>
   );
