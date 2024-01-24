@@ -5,7 +5,7 @@ import { SearchBar } from './components/SearchBar/SearchBar.jsx';
 import initialContacts from './data/initialContacts.json';
 import { ContactForm } from './components/ContactForm/ContactForm.jsx';
 
-function App() {
+export const App = () => {
   const [contactsUsers, setContactsUsers] = useState(initialContacts);
   const [nameFilter, setNameFilter] = useState('');
 
@@ -16,6 +16,10 @@ function App() {
   const visibleContactsUsers = contactsUsers.filter(user =>
     user.name.toLowerCase().includes(nameFilter.toLowerCase())
   );
+
+  const clearFilterField = () => {
+    setNameFilter('');
+  };
 
   const deleteUser = userId => {
     setContactsUsers(prevUsers => {
@@ -29,7 +33,7 @@ function App() {
         <ContactForm />
       </Section>
       <Section title="Find contacts by name">
-        <SearchBar value={nameFilter} onChange={handleChange} />
+        <SearchBar value={nameFilter} onChange={handleChange} onClick={clearFilterField} />
       </Section>
 
       <Section title="Contact List">
@@ -37,6 +41,6 @@ function App() {
       </Section>
     </>
   );
-}
+};
 
-export default App;
+// export default App;
