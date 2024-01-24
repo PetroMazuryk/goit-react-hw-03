@@ -1,6 +1,6 @@
 import css from './SearchBar.module.css';
 
-export const SearchBar = ({ value, onChange, onClick }) => {
+export const SearchBar = ({ value, onChange, onClick, enterField }) => {
   return (
     <div className={css.wrapper}>
       <input
@@ -10,9 +10,11 @@ export const SearchBar = ({ value, onChange, onClick }) => {
         value={value}
         onChange={onChange}
       />
-      <button className={css.button} onClick={onClick}>
-        Clear
-      </button>
+      {enterField && (
+        <button className={css.button} onClick={onClick}>
+          Clear
+        </button>
+      )}
     </div>
   );
 };

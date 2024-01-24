@@ -33,7 +33,12 @@ export const App = () => {
         <ContactForm />
       </Section>
       <Section title="Find contacts by name">
-        <SearchBar value={nameFilter} onChange={handleChange} onClick={clearFilterField} />
+        <SearchBar
+          enterField={nameFilter}
+          value={nameFilter}
+          onChange={handleChange}
+          onClick={clearFilterField}
+        />
       </Section>
 
       <Section title="Contact List">
@@ -42,5 +47,3 @@ export const App = () => {
     </>
   );
 };
-
-// export default App;
