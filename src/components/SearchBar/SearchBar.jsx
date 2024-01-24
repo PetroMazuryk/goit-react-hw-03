@@ -10,7 +10,6 @@ export const SearchBar = ({ value, onChange }) => {
         value={value}
         onChange={onChange}
       />
-
       <button className={css.button}>Clear</button>
     </div>
   );

@@ -6,17 +6,21 @@ import initialContacts from './data/initialContacts.json';
 import { ContactForm } from './components/ContactForm/ContactForm.jsx';
 
 function App() {
-  const [contacts, setContacts] = useState(initialContacts);
-  const [inputValue, setInputValue] = useState('');
+  const [contactsUsers, setContactsUsers] = useState(initialContacts);
+  const [nameFilter, setNameFilter] = useState('');
 
   const handleChange = evt => {
-    setInputValue(evt.target.value);
+    setNameFilter(evt.target.value);
   };
 
-  const getFilteredContacts = () => {
-    const normalizedValue = inputValue.toLowerCase().trim();
+  const visibleContactsUsers = contactsUsers.filter(user =>
+    user.name.toLowerCase().includes(nameFilter.toLowerCase())
+  );
 
-    return contacts.filter(contact => contact.name.toLowerCase().includes(normalizedValue));
+  const deleteUser = userId => {
+    setContactsUsers(prevUsers => {
+      return prevUsers.filter(user => user.id !== userId);
+    });
   };
 
   return (
@@ -25,11 +29,11 @@ function App() {
         <ContactForm />
       </Section>
       <Section title="Find contacts by name">
-        <SearchBar value={inputValue} onChange={handleChange} />
+        <SearchBar value={nameFilter} onChange={handleChange} />
       </Section>
 
       <Section title="Contact List">
-        <ContactList contacts={getFilteredContacts()} />
+        <ContactList contacts={visibleContactsUsers} onDelete={deleteUser} />
       </Section>
     </>
   );
