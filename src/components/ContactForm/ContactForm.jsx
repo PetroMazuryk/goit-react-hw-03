@@ -7,7 +7,11 @@ import css from './ContactForm.module.css';
 
 const ContactSchema = Yup.object().shape({
   name: Yup.string().min(2, 'Too Short!').max(50, 'Too Long!').required('Required'),
-  number: Yup.number().positive('!!! > 0 !!!').required('Required'),
+  number: Yup.string()
+    .matches(/^[0-9]+$/, 'Must be only digits')
+    .min(5, 'Must be exactly 5 digits')
+    .max(5, 'Must be exactly 5 digits')
+    .required('Required'),
 });
 
 const initialValues = {
@@ -25,7 +29,7 @@ export const ContactForm = ({ onAddContact }) => {
       name: values.name,
       number: values.number,
     };
-    console.log(newContact);
+
     onAddContact(newContact);
     actions.resetForm();
   };
