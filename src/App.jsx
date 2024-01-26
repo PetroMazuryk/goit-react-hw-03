@@ -1,4 +1,5 @@
 import { useState } from 'react';
+
 import { ContactList } from './components/ContactList/ContactList.jsx';
 import { Section } from './components/Section/Section.jsx';
 import { SearchBar } from './components/SearchBar/SearchBar.jsx';
@@ -9,7 +10,13 @@ import { Notification } from './components/Notification/Notification.jsx';
 export const App = () => {
   const [contactsUsers, setContactsUsers] = useState(initialContacts);
   const [nameFilter, setNameFilter] = useState('');
-  console.log(contactsUsers);
+
+  const addContactUser = newContact => {
+    setContactsUsers(prevContacts => {
+      return [...prevContacts, newContact];
+    });
+  };
+
   const handleChange = evt => {
     setNameFilter(evt.target.value);
   };
@@ -31,7 +38,7 @@ export const App = () => {
   return (
     <>
       <Section title="Add new contacts">
-        <ContactForm />
+        <ContactForm onAddContact={addContactUser} />
       </Section>
       <Section title="Find contacts by name">
         <SearchBar

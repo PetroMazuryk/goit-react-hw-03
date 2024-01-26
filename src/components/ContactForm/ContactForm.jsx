@@ -15,15 +15,17 @@ const initialValues = {
   number: '',
 };
 
-export const ContactForm = ({ onSave }) => {
+export const ContactForm = ({ onAddContact }) => {
   const nameFieldId = useId();
   const numberFieldId = useId();
 
   const handleSubmit = (values, actions) => {
-    onSave({
-      ...values,
+    const newContact = {
+      name: values.name,
+      number: values.number,
       id: nanoid(),
-    });
+    };
+    onAddContact(newContact);
     actions.resetForm();
   };
 
@@ -35,14 +37,14 @@ export const ContactForm = ({ onSave }) => {
             Name
           </label>
           <Field className={css.field} type="text" name="name" id={nameFieldId} />
-          <ErrorMessage className={css.error} name="name" as="span" />
+          <ErrorMessage className={css.error} name="name" component="span" />
         </div>
         <div className={css.labelWrapper}>
           <label className={css.label} htmlFor={numberFieldId}>
             Number
           </label>
           <Field className={css.field} type="number" name="number" id={numberFieldId} />
-          <ErrorMessage className={css.error} name="number" as="span" />
+          <ErrorMessage className={css.error} name="number" component="span" />
         </div>
 
         <button className={css.button} type="submit">

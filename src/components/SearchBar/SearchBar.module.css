@@ -1,7 +1,10 @@
 .wrapper {
   display: flex;
   align-items: center;
-  /* margin: 20px 0px 0px; */
+  border: 1px solid grey;
+  padding: 8px;
+  border-radius: 10px;
+  box-shadow: -4px -4px 6px #fff, 8px 8px 16px -8px #eb5757;
 }
 
 .input {
