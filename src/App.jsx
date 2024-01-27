@@ -8,6 +8,7 @@ import { SearchBar } from './components/SearchBar/SearchBar.jsx';
 import initialContacts from './data/initialContacts.json';
 import { ContactForm } from './components/ContactForm/ContactForm.jsx';
 import { Notification } from './components/Notification/Notification.jsx';
+import { PhoneTitle } from './components/PhoneTitle/PhoneTitle.jsx';
 
 const initialSavedContacts = () => {
   const savedContacts = window.localStorage.getItem('saved-contacts');
@@ -66,6 +67,7 @@ export const App = () => {
 
   return (
     <>
+      <PhoneTitle />
       <Section title="Add new contacts">
         <ContactForm onAddContact={handleSubmit} />
       </Section>
