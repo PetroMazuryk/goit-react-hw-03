@@ -1,4 +1,6 @@
 import { useState, useEffect } from 'react';
+import { nanoid } from 'nanoid';
+import Notiflix from 'notiflix';
 
 import { ContactList } from './components/ContactList/ContactList.jsx';
 import { Section } from './components/Section/Section.jsx';
@@ -20,6 +22,25 @@ export const App = () => {
     setContactsUsers(prevContacts => {
       return [...prevContacts, newContact];
     });
+  };
+
+  const handleSubmit = (values, actions) => {
+    const newContact = {
+      id: nanoid(),
+      name: values.name,
+      number: values.number,
+    };
+    const isContactExists = contactsUsers.some(
+      contact => contact.name.toLowerCase() === newContact.name.toLowerCase()
+    );
+
+    if (isContactExists) {
+      Notiflix.Notify.info(`${newContact.name} is already in contacts. Enter a different name`);
+    } else {
+      Notiflix.Notify.success(` Your name ${newContact.name} has been added to the list`);
+      addContactUser(newContact);
+      actions.resetForm();
+    }
   };
 
   const handleChange = evt => {
@@ -46,7 +67,7 @@ export const App = () => {
   return (
     <>
       <Section title="Add new contacts">
-        <ContactForm onAddContact={addContactUser} />
+        <ContactForm onAddContact={handleSubmit} />
       </Section>
       <Section title="Find contacts by name">
         <SearchBar
